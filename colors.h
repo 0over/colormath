@@ -1,3 +1,9 @@
+/*
+ * colors.h
+ * Part of https://github.com/1over/colormath by Andrii Buriachevskyi.
+ * See LICENSE for details.
+ */
+
 #ifndef COLORS_H
 #define COLORS_H
 
