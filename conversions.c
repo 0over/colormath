@@ -8,6 +8,8 @@
 #include <math.h>
 
 xyz_t rgb2xyz( rgb_t value ) {
+	xyz_t result;
+
 	double r = value.r / 255.0;
 	double g = value.g / 255.0;
 	double b = value.b / 255.0;
@@ -31,7 +33,6 @@ xyz_t rgb2xyz( rgb_t value ) {
 	g *= 100;
 	b *= 100;
 
-	xyz_t result;
 	result.x = r * 0.4124 + g * 0.3576 + b * 0.1805;
 	result.y = r * 0.2126 + g * 0.7152 + b * 0.0722;
 	result.z = r * 0.0193 + g * 0.1192 + b * 0.9505;
@@ -40,13 +41,16 @@ xyz_t rgb2xyz( rgb_t value ) {
 }
 
 rgb_t xyz2rgb( xyz_t value ) {
+	rgb_t result;
+	double r, g, b;
+
 	value.x /= 100;
 	value.y /= 100;
 	value.z /= 100;
 
-	double r = value.x *  3.2406 + value.y * -1.5372 + value.z * -0.4986;
-	double g = value.x * -0.9689 + value.y *  1.8758 + value.z *  0.0415;
-	double b = value.x *  0.0557 + value.y * -0.2040 + value.z *  1.0570;
+	r = value.x *  3.2406 + value.y * -1.5372 + value.z * -0.4986;
+	g = value.x * -0.9689 + value.y *  1.8758 + value.z *  0.0415;
+	b = value.x *  0.0557 + value.y * -0.2040 + value.z *  1.0570;
 
 	if( r > 0.0031308 )
 		r = 1.055 * pow( r, 1 / 2.4 ) - 0.055;
@@ -63,7 +67,6 @@ rgb_t xyz2rgb( xyz_t value ) {
 	else
 		b *= 12.92;
 
-	rgb_t result;
 	result.r = r * 255;
 	result.g = g * 255;
 	result.b = b * 255;
@@ -72,6 +75,8 @@ rgb_t xyz2rgb( xyz_t value ) {
 }
 
 lab_t xyz2lab( xyz_t value ) {
+	lab_t result;
+
 	value.x /=  95.047;
 	value.y /=   100.0;
 	value.z /= 108.883;
@@ -91,7 +96,6 @@ lab_t xyz2lab( xyz_t value ) {
 	else
 		value.z = 7.787 * value.z + 16.0 / 116;
 
-	lab_t result;
 	result.l = ( 116 * value.y ) - 16;
 	result.a = 500 * ( value.x - value.y );
 	result.b = 200 * ( value.y - value.z );
@@ -101,6 +105,7 @@ lab_t xyz2lab( xyz_t value ) {
 
 xyz_t lab2xyz( lab_t value ) {
 	xyz_t result;
+
 	result.y = ( value.l + 16 ) / 116.0;
 	result.x = value.a / 500.0 + result.y;
 	result.z = result.y - value.b / 200.0;
