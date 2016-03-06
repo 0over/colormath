@@ -1,2 +1,4 @@
-# colormath
-Simple ANSI C library to perform color math operations
+colormath
+----------------------------
+
+ANSI C library contains different color operations such as color space conversions, Delta E distance.

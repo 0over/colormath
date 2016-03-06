@@ -7,18 +7,24 @@
 #ifndef COLORS_H
 #define COLORS_H
 
-typedef unsigned char byte;
+#include <stdint.h>
 
 typedef struct rgb_s {
-	byte r, g, b;
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
 } rgb_t;
 
 typedef struct xyz_s {
-	double x, y, z;
+	double x;
+	double y;
+	double z;
 } xyz_t;
 
 typedef struct lab_s {
-	double l, a, b;
+	double l;
+	double a;
+	double b;
 } lab_t;
 
 #endif /* COLORS_H */
