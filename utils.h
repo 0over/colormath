@@ -9,6 +9,10 @@
 
 #include "colors.h"
 
+double rgbhex_distance(int hex1, int hex2);
+
+rgb_t hex2rgb(int hex);
+
 /*
  * Based on http://github.com/gfiumara/CIEDE2000
  */

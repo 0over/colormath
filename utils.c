@@ -5,7 +5,18 @@
  */
 
 #include "utils.h"
+#include "conversions.h"
 #include <math.h>
+
+double rgbhex_distance( int c1, int c2 ) {
+	rgb_t rgb1 = hex2rgb( c1 ), rgb2 = hex2rgb( c2 );
+	return ciede2000( xyz2lab( rgb2xyz( rgb1 ) ), xyz2lab( rgb2xyz( rgb2 ) ) );
+}
+
+rgb_t hex2rgb( int hex ) {
+	rgb_t result = {((hex>>16) & 0xff), ((hex>>8) & 0xff), (hex & 0xff)};
+	return result;
+}
 
 double ciede2000( lab_t lab1, lab_t lab2 ) {
 	/* 
